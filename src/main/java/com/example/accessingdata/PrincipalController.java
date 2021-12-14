@@ -23,7 +23,7 @@ public class PrincipalController {
     @PostMapping(path = "/add")
     public @ResponseBody String addNovoUsuario(@RequestParam String nome, @RequestParam String email,
     @RequestParam String status, @RequestParam String local, @RequestParam String inicioPrevisto, @RequestParam String inicioCirurgia,
-    @RequestParam String fimdaCirurgia, @RequestParam String saidaPrevista) {
+    @RequestParam String fimCirurgia, @RequestParam String saidaPrevista) {
 
         if(uRepository.findByEmail(email) != null ){
             return "O email digitado já existe.";
@@ -37,7 +37,7 @@ public class PrincipalController {
            u.setLocal(local);
            u.setInicioPrevisto(inicioPrevisto);
            u.setInicioCirurgia(inicioCirurgia);
-           u.setFimdaCirurgia(fimdaCirurgia);
+           u.setFimCirurgia(fimCirurgia);
            u.setSaidaPrevista(saidaPrevista);
             uRepository.save(u);
             return "Ok ao gravar.";
@@ -56,7 +56,7 @@ public class PrincipalController {
     @PutMapping(path = "/update/{id}")
     public @ResponseBody String updateUsuario(@PathVariable int id, @RequestParam String nome, @RequestParam String status,
             @RequestParam String email, @RequestParam String local, @RequestParam String inicioPrevisto, 
-            @RequestParam String inicioCirurgia, @RequestParam String fimdaCirurgia, @RequestParam String saidaPrevista) {
+            @RequestParam String inicioCirurgia, @RequestParam String fimCirurgia, @RequestParam String saidaPrevista) {
         Usuario u = uRepository.findById(id);
         u.setNome(nome);
         u.setEmail(email);
@@ -64,7 +64,7 @@ public class PrincipalController {
         u.setLocal(local);
         u.setInicioPrevisto(inicioPrevisto);
         u.setInicioCirurgia(inicioCirurgia);
-        u.setFimdaCirurgia(fimdaCirurgia);
+        u.setFimCirurgia(fimCirurgia);
         u.setSaidaPrevista(saidaPrevista);
         uRepository.save(u);
         return "Ok ao atualizar.";

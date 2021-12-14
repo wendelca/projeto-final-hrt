@@ -20,7 +20,7 @@ public class Usuario {
     private String local;
     private String inicioPrevisto;
     private String inicioCirurgia;
-    private String fimdaCirurgia;
+    private String fimCirurgia;
     private String saidaPrevista;
 
     public String getStatus() {
@@ -55,12 +55,12 @@ public class Usuario {
         this.inicioCirurgia = inicioCirurgia;
     }
 
-    public String getFimdaCirurgia() {
-        return fimdaCirurgia;
+    public String getFimCirurgia() {
+        return fimCirurgia;
     }
 
-    public void setFimdaCirurgia(String fimdaCirurgia) {
-        this.fimdaCirurgia = fimdaCirurgia;
+    public void setFimCirurgia(String fimCirurgia) {
+        this.fimCirurgia = fimCirurgia;
     }
 
     public String getSaidaPrevista() {
