@@ -31,7 +31,6 @@ public class PrincipalController {
            u.setLocal(local);
            /*
            u.setStatus(status);
-           
            u.setIniPrevisto(iniPrevisto);
            u.setIniCirurgia(iniCirurgia);
            u.setFimCirurgia(fimCirurgia);
@@ -56,7 +55,6 @@ public class PrincipalController {
         u.setNome(nome);
         u.setLocal(local);
         /*u.setStatus(status);
-       
         u.setIniPrevisto(iniPrevisto);
         u.setIniCirurgia(iniCirurgia);
         u.setFimCirurgia(fimCirurgia);
