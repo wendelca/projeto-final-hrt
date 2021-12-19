@@ -16,17 +16,17 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller // Isso significa que esta classe é um Controlador
 @RequestMapping(path = "/user") // Isso significa que os URLs começam com / Demo (após o caminho do aplicativo)
 @CrossOrigin(origins = "*")
-public class PrincipalController {
+public class UserController {
    
     @Autowired // faz o starte do nosso objeto
     private UsuarioRepository uRepository;
 
     @PostMapping(path = "/")
-    public @ResponseBody String addNovoUsuario(@RequestParam String nome, @RequestParam String local/*,
+    public @ResponseBody String addNovoUser(@RequestParam String nome, @RequestParam String local/*,
     @RequestParam String status, , @RequestParam String iniPrevisto, @RequestParam String iniCirurgia,
     @RequestParam String fimCirurgia, @RequestParam String saidaPrev*/) {
        
-           Usuario u = new Usuario();
+           User u = new User();
            u.setNome(nome);
            u.setLocal(local);
            /*
@@ -41,17 +41,17 @@ public class PrincipalController {
     }
 
     @GetMapping(path = "/")
-    public @ResponseBody Iterable<Usuario> getAllUsuarios() {
+    public @ResponseBody Iterable<User> getAllUsers() {
         return uRepository.findAll(Sort.by(Sort.Direction.ASC, "id"));
         // return uRepository.findAll();
     }
     // PUT atualizar
     @PutMapping(path = "/{id}")
-    public @ResponseBody String updateUsuario(@PathVariable int id, @RequestParam String nome, @RequestParam String local
+    public @ResponseBody String updateUser(@PathVariable int id, @RequestParam String nome, @RequestParam String local
     /*, @RequestParam String status,
               @RequestParam String iniPrevisto, 
             @RequestParam String iniCirurgia, @RequestParam String fimCirurgia, @RequestParam String saidaPrev*/) {
-        Usuario u = uRepository.findById(id);
+        User u = uRepository.findById(id);
         u.setNome(nome);
         u.setLocal(local);
         /*u.setStatus(status);
@@ -64,7 +64,7 @@ public class PrincipalController {
     }
     // DELETE apagar
     @DeleteMapping(path = "/{id}")
-    public @ResponseBody String deleteUsuario(@PathVariable int id) {
+    public @ResponseBody String deleteUser(@PathVariable int id) {
         uRepository.deleteById(id);
         return "Ok ao apagar.";
     }
