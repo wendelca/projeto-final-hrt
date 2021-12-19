@@ -8,8 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "tb_usuario")
-public class Usuario {
+@Table(name = "tb_user")
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -69,7 +69,6 @@ public class Usuario {
     public void setSaidaPrev(String saidaPrev) {
         this.saidaPrev = saidaPrev;
     }
-   
     
      
 }
