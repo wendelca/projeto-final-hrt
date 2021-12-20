@@ -22,15 +22,15 @@ public class UserController {
     private UsuarioRepository uRepository;
 
     @PostMapping(path = "/")
-    public @ResponseBody String addNovoUser(@RequestParam String nome, @RequestParam String local/*,
-    @RequestParam String status, , @RequestParam String iniPrevisto, @RequestParam String iniCirurgia,
+    public @ResponseBody String addNovoUser(@RequestParam String nome,@RequestParam String status, @RequestParam String local  /*,
+    , @RequestParam String iniPrevisto, @RequestParam String iniCirurgia,
     @RequestParam String fimCirurgia, @RequestParam String saidaPrev*/) {
        
            User u = new User();
            u.setNome(nome);
+           u.setStatus(status);
            u.setLocal(local);
            /*
-           u.setStatus(status);
            u.setIniPrevisto(iniPrevisto);
            u.setIniCirurgia(iniCirurgia);
            u.setFimCirurgia(fimCirurgia);
@@ -47,14 +47,15 @@ public class UserController {
     }
     // PUT atualizar
     @PutMapping(path = "/{id}")
-    public @ResponseBody String updateUser(@PathVariable int id, @RequestParam String nome, @RequestParam String local
-    /*, @RequestParam String status,
+    public @ResponseBody String updateUser(@PathVariable int id, @RequestParam String nome,@RequestParam String status, @RequestParam String local
+    /*, 
               @RequestParam String iniPrevisto, 
             @RequestParam String iniCirurgia, @RequestParam String fimCirurgia, @RequestParam String saidaPrev*/) {
         User u = uRepository.findById(id);
         u.setNome(nome);
+        u.setStatus(status);
         u.setLocal(local);
-        /*u.setStatus(status);
+        /*
         u.setIniPrevisto(iniPrevisto);
         u.setIniCirurgia(iniCirurgia);
         u.setFimCirurgia(fimCirurgia);
