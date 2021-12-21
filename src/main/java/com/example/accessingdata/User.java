@@ -21,6 +21,7 @@ public class User {
     private String iniCirurgia;
     private String fimCirurgia;
     private String saidaPrev;
+    
     public Integer getId() {
         return id;
     }

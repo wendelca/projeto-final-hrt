@@ -9,7 +9,8 @@ import org.springframework.data.repository.CrudRepository;
 public interface UserRepository extends CrudRepository<User, Integer>{
 
     public User findById(int id);
-    public Iterable<User> findAll(Sort sort);
+    public User findByName(String name);
+    // public Iterable<User> findAll(Sort sort);
 
 }
 
