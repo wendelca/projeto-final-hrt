@@ -17,19 +17,27 @@
         function save() {
             const xhttp = new XMLHttpRequest();
             id = document.getElementById("id").value;
-            name = document.getElementById("name").value;
+			name = document.getElementById("name").value;
             status = document.getElementById("status").value;
             local = document.getElementById("local").value;
             iniPrevisto = document.getElementById("iniPrevisto").value;
             iniCirurgia = document.getElementById("iniCirurgia").value;
             fimCirurgia = document.getElementById("fimCirurgia").value;
- 	   saidaPrev = document.getElementById("saidaPrev").value;
+ 	        saidaPrev = document.getElementById("saidaPrev").value;
 
-            if (id > 0) {
- 		xhttp.open("PUT", `/user/${id}?name=${name}&status=${status}&local=${local}&iniPrevisto=${iniPrevisto}
-&iniCirurgia=${iniCirurgia}&fimCirurgia=${fimCirurgia}&saidaPrev=${saidaPrev}`);
-	   xhttp.open("POST", `/user/?name=${name}&status=${status}&local=${local}&iniPrevisto=${iniPrevisto}
-&iniCirurgia=${iniCirurgia}&fimCirurgia=${fimCirurgia}&saidaPrev=${saidaPrev}`);
+			 if (name == '') {
+                alert('O Nome do Paciente é obrigatório.');
+                return false;
+            }
+			if (id > 0) {
+
+ 		xhttp.open("PUT", `/user/${id}?name=${name}&status=${status}&local=${local}&iniPrevisto=${iniPrevisto}&iniCirurgia=${
+			 iniCirurgia}&fimCirurgia=${fimCirurgia}&saidaPrev=${saidaPrev}`);
+
+			} else {
+	   xhttp.open("POST", `/user/?name=${name}&status=${status}&local=${local}&iniPrevisto=${iniPrevisto}&iniCirurgia=${
+		   iniCirurgia}&fimCirurgia=${fimCirurgia}&saidaPrev=${saidaPrev}`);
+
             }
  //console.log(pr)//
 
@@ -41,6 +49,7 @@
             }
         }
         function listAllUser() {
+
             const xhttp = new XMLHttpRequest();
             xhttp.open("GET", `/user/`);
             xhttp.send();
@@ -50,8 +59,15 @@
                 for (const i in lsUser) {
                     console.log(lsUser[i])
                     u = lsUser[i]
-                    out += `<tr onclick='activate(${i})'><td>${u.name}</td>
-                                                         <td>${u.status}</td>
+					try {
+                        cor = corStatus(u.status).cor  
+                        
+                    } catch (error) {
+
+                    }
+					
+					out += `<tr onclick='activate(${i})'><td>${u.name}</td>
+														 <td style="background-color: ${cor}"> ${u.status}</td>
                                                          <td>${u.local}</td>
  														 <td>${u.iniPrevisto}</td>
                                                          <td>${u.iniCirurgia}</td>
@@ -95,12 +111,42 @@
                 clearForm();
             }
         }
+
+		function corStatus(status) {
+            console.log(status)
+            switch (status) {
+                case 'Pré Operatório':
+                    return {
+                        label: 'Pré-Operatório',
+                        cor: '#eff307'
+                    };
+                case 'Sala de Cirurgia':
+                    return {
+                        label: 'Sala de Cirurgia',
+                        cor: '#1648ec'
+                    };
+                case 'Sala de Recuperacao':
+                    return {
+                        label: 'Sala de Recuperacao',
+                        cor: '#ec1d16'
+                    };
+                case 'Transferído':
+                    return {
+                        label: 'Transferído',
+                        cor: '#16ec56'
+                    };
+            }
+
+
+        }
+
+
     </script>
 
     <div class="container mt-3">
 <div class="row">
            <div>
-                <h2 class="col mt-1">Painel Centro Cirurgico - Hospital HRT<samp id="view"></samp></h2>
+                <h2 class="col mt-1">Gerenciar Painel dos Pacientes no Centro Cirúrgico<samp id="view"></samp></h2>
             </div>
         </div>
 
@@ -113,15 +159,18 @@
 				<input type="text" class="form-control" id="name" placeholder="Digite seu nome" name="name">
 			</div>
 
-                <div class="col">
-                    <label for="status">Status:</label>
-                    <select class="form-select" id="status" name="status">
-                        <option value="Pré Operatório">Pré Operatório</option>
-                        <option value="Em sala de Cirurgia">Em sala de Cirurgia</option>
-                        <option value="Sala de Recuperacao">Sala de Recuperação</option>
-                        <option value="Transferído">Transferído</option>
-                    </select>
-                </div>
+			<div class="col">
+				<style type="cores/css"></style>
+				<label for="status">Status:</label>
+				<select class="form-select" id="status" name="status">
+					<option style="background-color: #eff307;" value="Pré Operatório">Pré Operatório </option>
+					<option style="background-color: #1648ec;" value="Sala de Cirurgia">Sala de Cirurgia</option>
+					<option style="background-color: #ec1d16;" value="Sala de Recuperacao">Sala de Recuperação
+					</option>
+					<option style="background-color: #16ec56;" value="Transferído">Transferído</option>
+					
+				</select>
+			</div>
 
                 <div class="col">
 					<input type="hidden" id="id" name="id">
@@ -135,15 +184,15 @@
                         <label for="iniPrevisto">Início Previsto: </label>
                         <input type="time" class="form-control" id="iniPrevisto" name="iniPrevisto">
                     </div>
-<div class="col">
+				<div class="col">
                         <label for="iniCirurgia">Início Cirurgia: </label>
                         <input type="time" class="form-control" id="iniCirurgia" name="iniCirurgia">
                     </div>
- <div class="col">
+ 				<div class="col">
                         <label for="fimCirurgia">Fim da Cirurgia: </label>
                         <input type="time" class="form-control" id="fimCirurgia" name="fimCirurgia">
                     </div>
-<div class="col">
+				<div class="col">
                         <label for="saidaPrev">Saída da Cirurgia: </label>
                         <input type="time" class="form-control" id="saidaPrev" name="saidaPrev">
                     </div>
@@ -153,6 +202,7 @@
                     <button type="button" class="btn btn-primary" onclick="save()">Salvar</button>
                     <button type="button" class="btn btn-secondary" onclick="clearForm()">Limpar</button>
                     <button type="button" class="btn btn-danger" onclick="deleteUser()">Apagar</button>
+					<button type="button" class="btn btn-tird" onclick="/painel()">Painel</button>
                 </div>
 
             </div>
@@ -177,5 +227,7 @@
     </div>
     <script>listAllUser();</script>
 </body>
+<loom-container id="lo-engage-ext-container"><loom-shadow classname="resolved"></loom-shadow></loom-container>
+<loom-container id="lo-companion-container"><loom-shadow classname="resolved"></loom-shadow></loom-container>
 </html>
 
