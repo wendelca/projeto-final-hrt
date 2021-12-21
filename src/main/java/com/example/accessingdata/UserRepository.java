@@ -6,9 +6,12 @@ import org.springframework.data.repository.CrudRepository;
 /**
  * UsuarioRepository
  */
-public interface UsuarioRepository extends CrudRepository<User, Integer>{
+public interface UserRepository extends CrudRepository<User, Integer>{
 
     public User findById(int id);
     public Iterable<User> findAll(Sort sort);
 
 }
+
+
+

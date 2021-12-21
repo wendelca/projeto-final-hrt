@@ -14,7 +14,7 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-    private String nome;
+    private String name;
     private String status;
     private String local;
     private String iniPrevisto;
@@ -27,11 +27,11 @@ public class User {
     public void setId(Integer id) {
         this.id = id;
     }
-    public String getNome() {
-        return nome;
+    public String getName() {
+        return name;
     }
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setName(String name) {
+        this.name = name;
     }
     public String getStatus() {
         return status;
